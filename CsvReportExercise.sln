@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{55F2A2A9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csvreportexercise.test", "tests\csvreportexercise.test\csvreportexercise.test.csproj", "{56329C9B-E88F-49D6-89BE-88264BEEA14B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "csvreportexercise.application", "src\csvreportexercise.application\csvreportexercise.application.csproj", "{4D4226C0-7631-4A7F-8E6D-0224B8C7F9A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,9 +30,14 @@ Global
 		{56329C9B-E88F-49D6-89BE-88264BEEA14B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56329C9B-E88F-49D6-89BE-88264BEEA14B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56329C9B-E88F-49D6-89BE-88264BEEA14B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D4226C0-7631-4A7F-8E6D-0224B8C7F9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D4226C0-7631-4A7F-8E6D-0224B8C7F9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D4226C0-7631-4A7F-8E6D-0224B8C7F9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D4226C0-7631-4A7F-8E6D-0224B8C7F9A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AE733B97-FFC8-4A97-8F7F-4C8A570792D3} = {451E781E-3746-43BE-8B50-743374709237}
 		{56329C9B-E88F-49D6-89BE-88264BEEA14B} = {55F2A2A9-D49A-48CC-9C29-1EA2F235EBF3}
+		{4D4226C0-7631-4A7F-8E6D-0224B8C7F9A1} = {451E781E-3746-43BE-8B50-743374709237}
 	EndGlobalSection
 EndGlobal

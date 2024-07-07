@@ -15,4 +15,4 @@ Before proceeding, ensure that the following prerequisites are met:
 To run the project in **Local** environment:
 
 1. **Run https profile**
-    Set https://localhost:7165/swagger/index.html?urls.primaryName=V1 into browser  
+    You should use the following URL 'https://localhost:7165/swagger/index.html?urls.primaryName=V1' to access the Swagger documentation of the application with the HTTPS profile.

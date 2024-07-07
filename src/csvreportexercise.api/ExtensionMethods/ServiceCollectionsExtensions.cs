@@ -1,4 +1,6 @@
 using csvreportexercise.api.Configurations;
+using csvreportexercise.application.Handlers.V1;
+using csvreportexercise.application.Handlers.V1.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 
@@ -25,5 +27,10 @@ public static class ServiceCollectionsExtensions
             setup.GroupNameFormat = "'v'VVV";
             setup.SubstituteApiVersionInUrl = true;
         });
+    }
+
+    public static void AddHandlers(this IServiceCollection services)
+    {
+        services.AddScoped<ICsvReportHandler, CsvReportHandler>();
     }
 }
