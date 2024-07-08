@@ -5,9 +5,12 @@ namespace csvreportexercise.application.Services.V1;
 
 public class FormFileService : IFormFileService
 {
-    public async Task<List<string>> GetIsbnListAsync(IFormFile file)
+    public async Task<Dictionary<string, int>> GetIsbnListAsync(IFormFile file)
     {
         List<string> isbnList = new List<string>();
+
+        Dictionary<string, int> isbnDictionary = new Dictionary<string, int>();
+        int lineNumber = 1;
 
         if (file.Length > 0)
         {
@@ -21,10 +24,15 @@ public class FormFileService : IFormFileService
                 
                 foreach (var isbn in isbns)
                 {
-                    isbnList.Add(isbn.Trim());
+                    if (!isbnDictionary.ContainsKey(isbn))
+                    {
+                        isbnDictionary.Add(isbn, lineNumber);
+                    }
                 }
+                
+                lineNumber++;
             }
         }
-        return isbnList;
+        return isbnDictionary;
     }
 }

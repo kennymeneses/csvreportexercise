@@ -4,5 +4,5 @@ namespace csvreportexercise.application.Services.V1.Interfaces;
 
 public interface IFormFileService
 {
-    Task<List<string>> GetIsbnListAsync(IFormFile file);
+    Task<Dictionary<string, int>> GetIsbnListAsync(IFormFile file);
 }

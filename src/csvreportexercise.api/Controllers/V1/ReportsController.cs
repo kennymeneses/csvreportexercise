@@ -19,17 +19,17 @@ public class ReportsController(IFormFileService formFileService, ICacheService c
     [ProducesErrorResponseType(typeof(ProblemDetails))]
     public async Task<IActionResult> DownloadDocument([FromForm] IsbnInfoRequest request ,CancellationToken cancellationToken)
     {
-        var isbnList = await formFileService.GetIsbnListAsync(request.File);
+        var isbnDictionary = await formFileService.GetIsbnListAsync(request.File);
+        var booksInMemory = cache.GetBookListStored(isbnDictionary.Keys.ToList());
         
-        
-
         var filteredRequest = new IsbnInfoFilteredRequest()
         {
-            
+            IsbnDict = isbnDictionary.Where(pair => !booksInMemory.Any(book => book.Isbn == pair.Key)).ToDictionary(),
+            BooksStored = booksInMemory
         };
 
-        var result = handler.GetCsvReport(, cancellationToken);
-        
-        return Ok();
+        var result = await handler.GetCsvReport(filteredRequest, cancellationToken);
+
+        return File(result.Bytes, result.ContentType, result.FileName);
     }
 }

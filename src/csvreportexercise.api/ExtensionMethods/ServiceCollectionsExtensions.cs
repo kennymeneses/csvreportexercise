@@ -35,8 +35,8 @@ public static class ServiceCollectionsExtensions
     public static void AddDependencies(this IServiceCollection services)
     {
         services.AddScoped<ICsvReportHandler, CsvReportHandler>();
+        services.AddSingleton<ICacheService, CacheService>();
         services.AddScoped<IFormFileService, FormFileService>();
-        services.AddScoped<ICacheService, CacheService>();
         services.AddScoped<IOpenLibraryService, OpenLibraryService>();
     }
 

@@ -15,15 +15,17 @@ public sealed class CsvReportHandler(IOpenLibraryService openLibraryService, ICa
     public async Task<DownloadCsvReportResponse> GetCsvReport(IsbnInfoFilteredRequest request, CancellationToken cancellationToken)
     {
         List<BookInfo> bookInfoList = new List<BookInfo>();
-        
-        foreach (string isbn in request.Isbns)
+
+        foreach (var pair in request.IsbnDict)
         {
-            OpenLibraryBookInfo? fullBookInfo= await openLibraryService.GetBookInfo(isbn);
+            OpenLibraryBookInfo? fullBookInfo= await openLibraryService.GetBookInfo(pair.Key);
 
             if (fullBookInfo is not null)
             {
                 BookInfo bookInfo = new BookInfo()
                 {
+                    RowNumber = pair.Value,
+                    Isbn = pair.Key,
                     Type = DataRetrievalType.Server,
                     Title = fullBookInfo.Details.Title,
                     Subtitle = fullBookInfo.Details.Subtitle,
@@ -47,19 +49,21 @@ public sealed class CsvReportHandler(IOpenLibraryService openLibraryService, ICa
             var workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet("Full Report");
             IRow headerRow = sheet.CreateRow(2);
-            SetSurveyTittle(headerRow, workbook, sheet);
-            DrawnBookInfo(bookInfoList, workbook, sheet);
+            SetTittles(headerRow, workbook, sheet);
+            DrawnBooksInfo(bookInfoList, workbook, sheet);
+            
+            workbook.Write(memoryStream);
             
             return new DownloadCsvReportResponse()
             {
-                FileName = "FullOpenLibraryReport",
+                FileName = "FullOpenLibraryReport.xlsx",
                 ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 Bytes = memoryStream.ToArray()
             };
         }
     }
 
-    private void DrawnBookInfo(List<BookInfo> bookInfoList, XSSFWorkbook woorkbook, ISheet excelSheet)
+    private void DrawnBooksInfo(List<BookInfo> bookInfoList, XSSFWorkbook woorkbook, ISheet excelSheet)
     {
         int rowNum = 3;
         
@@ -69,50 +73,48 @@ public sealed class CsvReportHandler(IOpenLibraryService openLibraryService, ICa
 
             ICell rowNumberCell = rowIn.CreateCell(1);
             rowNumberCell.CellStyle = GetTableCellStyle(woorkbook);
-            rowNumberCell.SetCellValue(rowNum-2);
-            CellRangeAddress mergedRowNumber = new CellRangeAddress(rowNum, rowNum, 1, 1);
-            excelSheet.AddMergedRegion(mergedRowNumber);
+            rowNumberCell.SetCellValue(bookInfo.RowNumber);
             
             ICell typeCell = rowIn.CreateCell(2);
             typeCell.CellStyle = GetTableCellStyle(woorkbook);
-            typeCell.SetCellValue(rowNum-2);
+            typeCell.SetCellValue(bookInfo.Type.ToString());
             CellRangeAddress mergedType = new CellRangeAddress(rowNum, rowNum, 2, 3);
             excelSheet.AddMergedRegion(mergedType);
             
             ICell isbnCell = rowIn.CreateCell(4);
             isbnCell.CellStyle = GetTableCellStyle(woorkbook);
-            isbnCell.SetCellValue(rowNum-2);
+            isbnCell.SetCellValue(bookInfo.Isbn);
             CellRangeAddress mergedIsbn = new CellRangeAddress(rowNum, rowNum, 4, 5);
             excelSheet.AddMergedRegion(mergedIsbn);
             
             ICell titleCell = rowIn.CreateCell(6);
             titleCell.CellStyle = GetTableCellStyle(woorkbook);
-            titleCell.SetCellValue(rowNum-2);
-            CellRangeAddress mergedTitle = new CellRangeAddress(rowNum, rowNum, 6, 7);
+            titleCell.SetCellValue((bookInfo.Title));
+            CellRangeAddress mergedTitle = new CellRangeAddress(rowNum, rowNum, 6, 8);
             excelSheet.AddMergedRegion(mergedTitle);
             
-            ICell subTitleCell = rowIn.CreateCell(8);
+            ICell subTitleCell = rowIn.CreateCell(9);
             subTitleCell.CellStyle = GetTableCellStyle(woorkbook);
-            subTitleCell.SetCellValue(rowNum-2);
-            CellRangeAddress mergedSubTitle = new CellRangeAddress(rowNum, rowNum, 8, 9);
+            subTitleCell.SetCellValue(bookInfo.Subtitle);
+            CellRangeAddress mergedSubTitle = new CellRangeAddress(rowNum, rowNum, 9, 11);
             excelSheet.AddMergedRegion(mergedSubTitle);
             
-            ICell authorCell = rowIn.CreateCell(10);
+            ICell authorCell = rowIn.CreateCell(12);
             authorCell.CellStyle = GetTableCellStyle(woorkbook);
-            authorCell.SetCellValue(rowNum-2);
-            CellRangeAddress mergedAuthor = new CellRangeAddress(rowNum, rowNum, 10, 12);
+            authorCell.SetCellValue(bookInfo.AuthorName);
+            CellRangeAddress mergedAuthor = new CellRangeAddress(rowNum, rowNum, 12, 14);
             excelSheet.AddMergedRegion(mergedAuthor);
             
-            ICell numberPagesCell = rowIn.CreateCell(13);
+            ICell numberPagesCell = rowIn.CreateCell(15);
             numberPagesCell.CellStyle = GetTableCellStyle(woorkbook);
-            numberPagesCell.SetCellValue(rowNum-2);
-            CellRangeAddress mergedNumberPages = new CellRangeAddress(rowNum, rowNum, 13, 14);
+            numberPagesCell.SetCellValue(bookInfo.NumberPages);
+            CellRangeAddress mergedNumberPages = new CellRangeAddress(rowNum, rowNum, 15, 16);
             excelSheet.AddMergedRegion(mergedNumberPages);
             
-            ICell publishDateCell = rowIn.CreateCell(15);
+            ICell publishDateCell = rowIn.CreateCell(17);
             publishDateCell.CellStyle = GetTableCellStyle(woorkbook);
-            publishDateCell.SetCellValue(rowNum-2);
-            CellRangeAddress mergedPublishDate = new CellRangeAddress(rowNum, rowNum, 15, 16);
+            publishDateCell.SetCellValue(bookInfo.PublishDate);
+            CellRangeAddress mergedPublishDate = new CellRangeAddress(rowNum, rowNum, 17, 18);
             excelSheet.AddMergedRegion(mergedPublishDate);
             
             rowNum++;
@@ -132,7 +134,7 @@ public sealed class CsvReportHandler(IOpenLibraryService openLibraryService, ICa
         return style;
     }
 
-    private void SetSurveyTittle(IRow rowIn, XSSFWorkbook woorkbook, ISheet excelSheet)
+    private void SetTittles(IRow rowIn, XSSFWorkbook woorkbook, ISheet excelSheet)
     {
         IFont font = woorkbook.CreateFont();
         font.Color = IndexedColors.Black.Index;
@@ -159,21 +161,19 @@ public sealed class CsvReportHandler(IOpenLibraryService openLibraryService, ICa
         ICell titleBookCell = rowIn.CreateCell(6);
         titleBookCell.CellStyle = style;
         
-        ICell subTitleBookCell = rowIn.CreateCell(8);
+        ICell subTitleBookCell = rowIn.CreateCell(9);
         subTitleBookCell.CellStyle = style;
 
-        ICell authorCell = rowIn.CreateCell(10);
+        ICell authorCell = rowIn.CreateCell(12);
         authorCell.CellStyle = style;
 
-        ICell numberPagesBookCell = rowIn.CreateCell(13);
+        ICell numberPagesBookCell = rowIn.CreateCell(15);
         numberPagesBookCell.CellStyle = style;
 
-        ICell publishDateCell = rowIn.CreateCell(22);
+        ICell publishDateCell = rowIn.CreateCell(17);
         publishDateCell.CellStyle = style;
         
         rowNumberCell.SetCellValue("Row Number");
-        CellRangeAddress mergedNumberCellRegion = new CellRangeAddress(2, 2, 1, 1);
-        excelSheet.AddMergedRegion(mergedNumberCellRegion);
         
         dataRetrievalTypeCell.SetCellValue("Data Retrieval Type");
         CellRangeAddress mergedDataRetrievalCellRegion = new CellRangeAddress(2, 2, 2, 3);
@@ -184,23 +184,23 @@ public sealed class CsvReportHandler(IOpenLibraryService openLibraryService, ICa
         excelSheet.AddMergedRegion(mergedIsbnCellCellRegion);
         
         titleBookCell.SetCellValue("Title");
-        CellRangeAddress mergedTitleBookCellCellRegion = new CellRangeAddress(2, 2, 6, 7);
+        CellRangeAddress mergedTitleBookCellCellRegion = new CellRangeAddress(2, 2, 6, 8);
         excelSheet.AddMergedRegion(mergedTitleBookCellCellRegion);
         
         subTitleBookCell.SetCellValue("SubTitle");
-        CellRangeAddress mergedSubTitleBookCellRegion = new CellRangeAddress(2, 2, 8, 9);
+        CellRangeAddress mergedSubTitleBookCellRegion = new CellRangeAddress(2, 2, 9, 11);
         excelSheet.AddMergedRegion(mergedSubTitleBookCellRegion);
         
         authorCell.SetCellValue("Author Name(s)");
-        CellRangeAddress mergedAuthorBookCellCellRegion = new CellRangeAddress(2, 2, 10, 12);
+        CellRangeAddress mergedAuthorBookCellCellRegion = new CellRangeAddress(2, 2, 12, 14);
         excelSheet.AddMergedRegion(mergedAuthorBookCellCellRegion);
         
         numberPagesBookCell.SetCellValue("Number of Pages");
-        CellRangeAddress mergedNumberPagesCellRegion = new CellRangeAddress(2, 2, 13, 14);
+        CellRangeAddress mergedNumberPagesCellRegion = new CellRangeAddress(2, 2, 15, 16);
         excelSheet.AddMergedRegion(mergedNumberPagesCellRegion);
         
         publishDateCell.SetCellValue("Publish Date");
-        CellRangeAddress mergedPublishDateCellRegion = new CellRangeAddress(2, 2, 15, 16);
+        CellRangeAddress mergedPublishDateCellRegion = new CellRangeAddress(2, 2, 17, 18);
         excelSheet.AddMergedRegion(mergedPublishDateCellRegion);
     }
 }
