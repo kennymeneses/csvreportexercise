@@ -1,4 +1,4 @@
-# API Parallel Exercise OpenLibrary by Kenny Meneses
+# BookInfo API ParallelStaff Exercise by Kenny Meneses
 
 # Running the Web API Application
 
@@ -16,3 +16,6 @@ To run the project in **Local** environment:
 
 1. **Run https profile**
     You should use the following URL 'https://localhost:7165/swagger/index.html?urls.primaryName=V1' to access the Swagger documentation of the application with the HTTPS profile.
+
+2. **Expected result**
+    You should able to download a csv file which contains books info from external service (OpenLibraryData) and local service.    
