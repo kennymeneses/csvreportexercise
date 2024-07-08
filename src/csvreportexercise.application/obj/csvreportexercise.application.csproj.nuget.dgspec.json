@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\csvreportexercise.application.csproj": {}
+    "c:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\csvreportexercise.application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\csvreportexercise.application.csproj": {
+    "c:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\csvreportexercise.application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\csvreportexercise.application.csproj",
+        "projectUniqueName": "c:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\csvreportexercise.application.csproj",
         "projectName": "csvreportexercise.application",
-        "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\csvreportexercise.application.csproj",
+        "projectPath": "c:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\csvreportexercise.application.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\obj\\",
+        "outputPath": "c:\\Users\\User\\OneDrive\\Desktop\\proyectos\\Backends\\Pruebas\\csvreportexercise\\src\\csvreportexercise.application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
