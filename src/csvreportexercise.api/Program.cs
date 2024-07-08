@@ -11,7 +11,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.ConfigureSwagger();
-builder.Services.AddHandlers();
+builder.Services.ConfigureOptions(builder.Configuration);
+builder.Services.AddDependencies();
+
 
 var app = builder.Build();
 

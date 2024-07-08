@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("csvreportexercise.application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4450b72c1b32cd97610d35cc16a416b76e21c789")]
 [assembly: System.Reflection.AssemblyProductAttribute("csvreportexercise.application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("csvreportexercise.application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

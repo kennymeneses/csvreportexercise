@@ -1,0 +1,13 @@
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\bin\Debug\net8.0\csvreportexercise.application.deps.json
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\bin\Debug\net8.0\csvreportexercise.application.dll
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\bin\Debug\net8.0\csvreportexercise.application.pdb
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\csvreportexercise.application.csproj.AssemblyReference.cache
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\csvreportexercise.application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\csvreportexercise.application.AssemblyInfoInputs.cache
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\csvreportexercise.application.AssemblyInfo.cs
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\csvreportexercise.application.csproj.CoreCompileInputs.cache
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\csvreportexercise.application.sourcelink.json
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\csvreportexercise.application.dll
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\refint\csvreportexercise.application.dll
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\csvreportexercise.application.pdb
+C:\Users\User\OneDrive\Desktop\proyectos\Backends\Pruebas\csvreportexercise\src\csvreportexercise.application\obj\Debug\net8.0\ref\csvreportexercise.application.dll
