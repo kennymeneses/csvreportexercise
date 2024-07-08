@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "RSGWIEXk4z0IHzIXVHWAlF3ImbarbLpGFwxLaeKXu6U=",
+  "Source": "csvreportexercise.api",
+  "BasePath": "_content/csvreportexercise.api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
